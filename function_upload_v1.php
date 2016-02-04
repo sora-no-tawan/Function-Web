@@ -20,7 +20,7 @@ function upload($user_name,$email,$message,$file)
     {
         echo 'Sorry File Empty';
     }
-    elseif($file['file_attach']['size'] < 40)
+    elseif($file['file_attach']['size'] < 41943040)
     {
         echo 'Sorry File limit 40 MB';
     }
