@@ -20,7 +20,7 @@ function upload($user_name,$email,$message,$file)
     {
         echo 'Sorry File Empty';
     }
-    elseif($file['file_attach']['size'] < 41943040)
+    elseif($file['file_attach']['size'] > 41943040)
     {
         echo 'Sorry File limit 40 MB';
     }
@@ -33,7 +33,7 @@ function upload($user_name,$email,$message,$file)
         $file_type = $file['file_attach']['type'];
 
         $file_ext = strtolower(end(explode('.',$file_name)));
-        $regex = "/^[0-9]+_([0-9a-zA-Z\_]+).{1}(jpge|png|jpg|pdf|doc|docx)+/";
+        $regex = "/^([0-9])+_?([0-9a-zA-Z\_\-]+).{1}(jpeg|jpg|png|pdf|doc|docx)+/";
         $match = preg_match($regex,$file_name);
 
         $file_allow = array(
@@ -52,7 +52,7 @@ function upload($user_name,$email,$message,$file)
             "application/doc",
             "application/docx");
 
-        if(in_array($file_ext,$file_allow) == true and in_array($file_type,$mim_type) == true and !file_exists($file_dir,$file_name) and checkemail($email) == true and $match == true)
+        if(in_array($file_ext,$file_allow) === true and in_array($file_type,$mim_type) === true and !file_exists($file_dir,$file_name) and checkemail($email) == true and $match == true)
         {
             $sql = "INSERT INTO contact(contact.contact_name,contact.contact_email,contact.contact_file,contact.contact_date,contact.contact_message) VALUES('".$user_name."','".$email."','".$file_name."',NOW(),'".$message."')";
 
