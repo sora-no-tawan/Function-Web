@@ -1,3 +1,4 @@
+<?php
 function check_mail($email)
 {
     //validation filter email return true or false
