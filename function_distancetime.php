@@ -1,3 +1,5 @@
+<?php 
+
 function CalDate($time1,$time2)
 {
         $time1 = strtotime($time1);
